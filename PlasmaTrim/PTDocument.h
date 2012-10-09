@@ -14,9 +14,12 @@
 
 @property(nonatomic, weak) IBOutlet PTSequenceView *sequenceView;
 @property(nonatomic, weak) IBOutlet NSColorWell *colorWell;
+@property(nonatomic, weak) IBOutlet NSButton *lastStageButton;
+@property(nonatomic, weak) IBOutlet NSPopUpButton *timePopUpButton;
 
 @property(nonatomic, strong, readonly) PTSequence *sequence;
 
+- (IBAction)changeLastStage:(id)sender;
 - (IBAction)colorChanged:(id)sender;
 
 @end

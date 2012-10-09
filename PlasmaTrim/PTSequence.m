@@ -52,6 +52,7 @@
 {
     if ( (self = [super init]) ) {
         _stages = [NSMutableArray array];
+        _lastSlotIndex = PTSequenceMaxStageCount;
         
         for (NSUInteger i = 0; i < PTSequenceMaxStageCount; i++) {
             [_stages addObject:[PTStage emptyStage]];
@@ -64,7 +65,7 @@
 {
     NSMutableString *documentString = [NSMutableString string];
     
-    [documentString appendString:@"PlasmaTrim RGB-8 Squence\r\n"];
+    [documentString appendString:@"PlasmaTrim RGB-8 Sequence\r\n"];
     [documentString appendString:@"Version: Simple Sequence Format\r\n"];
     [documentString appendFormat:@"Active Slots: %lu\r\n", _lastSlotIndex];
     

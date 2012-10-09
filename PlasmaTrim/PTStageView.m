@@ -30,6 +30,7 @@ static const CGFloat BlockHeight = 16;
             [nextTextField setEditable:NO];
             [nextTextField setSelectable:NO];
             [nextTextField setBordered:NO];
+            [nextTextField setDrawsBackground:NO];
             
             [self addSubview:nextTextField];
         }
@@ -45,13 +46,16 @@ static const CGFloat BlockHeight = 16;
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    CGFloat yOrigin = 0;
-    
     for (NSInteger i = 0; i < PTStageColorCount; i++) {
         [[[self stage] colorAtIndex:i] set];
-        NSRectFill(NSMakeRect(1, yOrigin, PTStageViewWidth - 2, BlockHeight - 2));
+        NSRectFill(NSMakeRect(1, i * BlockHeight, PTStageViewWidth - 2, BlockHeight - 2));
+    }
+    
+    if (![self isActive]) {
+        [[NSColor colorWithCalibratedWhite:0.5 alpha:1.0] set];
         
-        yOrigin += BlockHeight;
+        NSRectFillUsingOperation([[self holdTextField] frame], NSCompositeSourceOver);
+        NSRectFillUsingOperation([[self fadeTextField] frame], NSCompositeSourceOver);
     }
 }
 
@@ -60,14 +64,69 @@ static const CGFloat BlockHeight = 16;
     if (_stage != stage) {
         _stage = stage;
         
-        NSString *holdString = [NSString stringWithFormat:@"%c", (char)[[self stage] holdTime]];
-        NSString *fadeString = [NSString stringWithFormat:@"%c", (char)[[self stage] fadeTime]];
-        
-        [[self holdTextField] setStringValue:holdString];
-        [[self fadeTextField] setStringValue:fadeString];
-        
-        [self setNeedsDisplay:YES];
+        [self reloadData];
     }
+}
+
+- (void)setActive:(BOOL)active
+{
+    _active = active;
+    
+    [self setNeedsDisplay:YES];
+}
+
+- (void)reloadData
+{
+    NSString *holdString = [NSString stringWithFormat:@"%c", (char)[[self stage] holdTime]];
+    NSString *fadeString = [NSString stringWithFormat:@"%c", (char)[[self stage] fadeTime]];
+    
+    [[self holdTextField] setStringValue:holdString];
+    [[self fadeTextField] setStringValue:fadeString];
+    
+    [self setNeedsDisplay:YES];
+}
+
+- (NSRange)colorRangeForRect:(NSRect)rect
+{
+    NSRange range = NSMakeRange(0, 0);
+    
+    //Make sure the rect is in the view
+    if (NSMaxX(rect) < 0 || NSMinX(rect) > NSWidth([self bounds])) {
+        return range;
+    }
+    
+    if (NSMaxY(rect) < 0 || NSMinY(rect) > NSHeight([self bounds])) {
+        return range;
+    }
+    
+    BOOL foundOverlap = NO;
+    
+    for (NSInteger i = 0; i < PTStageColorCount; i++) {
+        NSRect colorRect = NSMakeRect(1, BlockHeight * i, PTStageViewWidth - 2, BlockHeight - 2);
+        
+        if (NSIntersectsRect(rect, colorRect)) {
+            if (foundOverlap) {
+                range.length++;
+            } else {
+                foundOverlap = YES;
+                
+                range.location = i;
+                range.length = 1;
+            }
+        }
+    }
+    
+    return range;
+}
+
+- (NSRect)rectForHoldTime
+{
+    return [[self holdTextField] frame];
+}
+
+- (NSRect)rectForFadeTime
+{
+    return [[self fadeTextField] frame];
 }
 
 @end

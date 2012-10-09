@@ -8,10 +8,31 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PTSequence;
+typedef enum : NSInteger {
+    PTStageViewSectionNone,
+    PTStageViewSectionColor,
+    PTStageViewSectionHoldTime,
+    PTStageViewSectionFadeTime,
+} PTStageViewSection;
+
+@class PTSequence, PTStageView;
+@protocol PTSequenceViewDelegate;
 
 @interface PTSequenceView : NSView
 
+@property(nonatomic, weak) IBOutlet id <PTSequenceViewDelegate> delegate;
+
 @property(nonatomic, weak) PTSequence *sequence;
 
+- (void)reloadData;
+
+- (PTStageView *)stageViewAtIndex:(NSUInteger)index;
+
+@end
+
+@protocol PTSequenceViewDelegate <NSObject>
+@required
+- (void)sequenceView:(PTSequenceView *)sequenceView didSelectColorRange:(NSRange)colorRange inStageAtIndex:(NSUInteger)stageIndex;
+- (void)sequenceView:(PTSequenceView *)sequenceView didSelectHoldTimeInStageAtIndex:(NSUInteger)stageIndex;
+- (void)sequenceView:(PTSequenceView *)sequenceView didSelectFadeTimeInStageAtIndex:(NSUInteger)stageIndex;
 @end

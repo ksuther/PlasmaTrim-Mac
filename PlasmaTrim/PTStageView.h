@@ -16,5 +16,13 @@ static const CGFloat PTStageViewHeight = 20 * 10;
 @interface PTStageView : NSView
 
 @property(nonatomic, weak) PTStage *stage;
+@property(nonatomic, assign, getter=isActive) BOOL active;
+
+- (void)reloadData;
+
+- (NSRange)colorRangeForRect:(NSRect)rect; //return the range of colors enclosed by rect
+
+- (NSRect)rectForHoldTime;
+- (NSRect)rectForFadeTime;
 
 @end

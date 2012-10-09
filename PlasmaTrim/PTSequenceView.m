@@ -8,11 +8,17 @@
 
 #import "PTSequenceView.h"
 #import "PTSequence.h"
+#import "PTStage.h"
 #import "PTStageView.h"
 
 @interface PTSequenceView () {
     PTStageView *_stageViews[PTSequenceMaxStageCount];
+    
+    BOOL _dragging;
+    NSPoint _mouseDownPoint;
+    NSPoint _mouseDraggedPoint;
 }
+- (NSRect)_draggedRect;
 @end
 
 @implementation PTSequenceView
@@ -48,10 +54,100 @@
     if (_sequence != sequence) {
         _sequence = sequence;
         
-        for (NSUInteger i = 0; i < PTSequenceMaxStageCount; i++) {
-            [_stageViews[i] setStage:[sequence stageAtIndex:i]];
+        [self reloadData];
+    }
+}
+
+- (void)drawRect:(NSRect)rect
+{
+    if (_dragging) {
+        [[NSColor colorWithCalibratedWhite:0.0 alpha:0.6] set];
+        NSRectFillUsingOperation([self _draggedRect], NSCompositeSourceOver);
+    }
+}
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    _mouseDownPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+}
+
+- (void)mouseDragged:(NSEvent *)theEvent
+{
+    _dragging = YES;
+    _mouseDraggedPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
+    [self setNeedsDisplay:YES];
+}
+
+- (void)mouseUp:(NSEvent *)theEvent
+{
+    NSRect checkRect;
+    
+    if (_dragging) {
+        checkRect = [self _draggedRect];
+    } else {
+        NSPoint point = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+        
+        checkRect = NSMakeRect(point.x, point.y, 1, 1);
+    }
+    
+    for (NSUInteger i = 0; i < PTSequenceMaxStageCount; i++) {
+        PTStageView *stageView = [self stageViewAtIndex:i];
+        NSRect stageRect = [self convertRect:checkRect toView:stageView];
+        NSRange colorRange = [stageView colorRangeForRect:stageRect];
+        
+        if (colorRange.length > 0) {
+            [[self delegate] sequenceView:self didSelectColorRange:colorRange inStageAtIndex:i];
+        }
+        
+        if (NSIntersectsRect(stageRect, [stageView rectForHoldTime])) {
+            [[self delegate] sequenceView:self didSelectHoldTimeInStageAtIndex:i];
+        }
+        
+        if (NSIntersectsRect(stageRect, [stageView rectForFadeTime])) {
+            [[self delegate] sequenceView:self didSelectFadeTimeInStageAtIndex:i];
         }
     }
+    
+    _dragging = NO;
+    
+    [self setNeedsDisplay:YES];
+}
+
+- (void)reloadData
+{
+    for (NSUInteger i = 0; i < PTSequenceMaxStageCount; i++) {
+        [_stageViews[i] setActive:i < [[self sequence] lastSlotIndex]];
+        [_stageViews[i] setStage:[[self sequence] stageAtIndex:i]];
+        
+        [_stageViews[i] reloadData];
+    }
+}
+
+- (PTStageView *)stageViewAtIndex:(NSUInteger)index
+{
+    NSAssert1(index >= 0 && index < PTSequenceMaxStageCount, @"index out of required range", index);
+    
+    return _stageViews[index];
+}
+
+#pragma mark - Private
+
+- (NSRect)_draggedRect
+{
+    NSRect draggedRect = NSMakeRect(_mouseDownPoint.x, _mouseDownPoint.y, _mouseDraggedPoint.x - _mouseDownPoint.x, _mouseDraggedPoint.y - _mouseDownPoint.y);
+    
+    if (NSWidth(draggedRect) < 0) {
+        draggedRect.origin.x += NSWidth(draggedRect);
+        draggedRect.size.width *= -1;
+    }
+    
+    if (NSHeight(draggedRect) < 0) {
+        draggedRect.origin.y += NSHeight(draggedRect);
+        draggedRect.size.height *= -1;
+    }
+    
+    return NSIntegralRect(draggedRect);
 }
 
 @end

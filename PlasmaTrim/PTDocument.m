@@ -8,11 +8,14 @@
 
 #import "PTDocument.h"
 #import "PTSequence.h"
+#import "PTStage.h"
 #import "PTSequenceView.h"
 #import "PTStageView.h"
 #import "NSColor+PTAdditions.h"
 
-@interface PTDocument ()
+@interface PTDocument () <PTSequenceViewDelegate> {
+    BOOL _settingLastStage;
+}
 @property(nonatomic, strong) PTSequence *sequence;
 @property(nonatomic, strong) NSColor *currentColor;
 @end
@@ -23,6 +26,8 @@
 {
     if ( (self = [super init]) ) {
         [self setSequence:[[PTSequence alloc] init]];
+        
+        [self setCurrentColor:[NSColor whiteColor]];
     }
     return self;
 }
@@ -37,6 +42,16 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
     [super windowControllerDidLoadNib:aController];
+    
+    [[self colorWell] setColor:[self currentColor]];
+    
+    //Set the fade/hold identifier based on the first character of the menu item
+    //This assumes that the first character of all the titles is 0-F
+    for (NSInteger i = 0; i < [[self timePopUpButton] numberOfItems]; i++) {
+        NSMenuItem *item = [[[self timePopUpButton] menu] itemAtIndex:i];
+        
+        [item setTag:[[item title] characterAtIndex:0]];
+    }
 }
 
 + (BOOL)autosavesInPlace
@@ -74,6 +89,23 @@
     }
 }
 
+- (IBAction)changeLastStage:(id)sender
+{
+    NSString *title;
+    
+    if (_settingLastStage) {
+        _settingLastStage = NO;
+        
+        title = NSLocalizedString(@"Set Last Stage", nil);
+    } else {
+        _settingLastStage = YES;
+        
+        title = NSLocalizedString(@"Click Last Stage", nil);
+    }
+    
+    [sender setTitle:title];
+}
+
 - (IBAction)colorChanged:(id)sender
 {
     NSColor *color = [[sender color] pt_nearestValidColor];
@@ -84,6 +116,41 @@
         [sender setColor:color];
         [[NSColorPanel sharedColorPanel] setColor:color];
     });
+}
+
+#pragma mark - PTSequenceView Delegate
+
+- (void)sequenceView:(PTSequenceView *)sequenceView didSelectColorRange:(NSRange)colorRange inStageAtIndex:(NSUInteger)stageIndex
+{
+    if (_settingLastStage) {
+        //Set the last stage in the sequence
+        [[self sequence] setLastSlotIndex:stageIndex + 1];
+        [self changeLastStage:[self lastStageButton]];
+    } else {
+        PTStage *stage = [[self sequence] stageAtIndex:stageIndex];
+        
+        for (NSUInteger j = colorRange.location; j < NSMaxRange(colorRange); j++) {
+            [stage setColor:[self currentColor] atIndex:j];
+        }
+    }
+    
+    [sequenceView reloadData];
+    
+    [self updateChangeCount:NSChangeDone]; //need to change this to newer methods to handle autosave and undo
+}
+
+- (void)sequenceView:(PTSequenceView *)sequenceView didSelectHoldTimeInStageAtIndex:(NSUInteger)stageIndex
+{
+    [[[self sequence] stageAtIndex:stageIndex] setHoldTime:[[[[self timePopUpButton] selectedItem] title] characterAtIndex:0]];
+    
+    [sequenceView reloadData];
+}
+
+- (void)sequenceView:(PTSequenceView *)sequenceView didSelectFadeTimeInStageAtIndex:(NSUInteger)stageIndex
+{
+    [[[self sequence] stageAtIndex:stageIndex] setFadeTime:[[[[self timePopUpButton] selectedItem] title] characterAtIndex:0]];
+    
+    [sequenceView reloadData];
 }
 
 @end
