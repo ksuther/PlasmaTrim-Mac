@@ -40,7 +40,7 @@
     unsigned int green = (unsigned int)round([color greenComponent] * 15);
     unsigned int blue = (unsigned int)round([color blueComponent] * 15);
     
-    return [NSString stringWithFormat:@"%01x%01x%01x", red, green, blue];
+    return [[NSString stringWithFormat:@"%01x%01x%01x", red, green, blue] uppercaseString];
 }
 
 @end
