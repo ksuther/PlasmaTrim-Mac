@@ -36,7 +36,6 @@
 		3772D83C1615F62A00EC88F2 /* PTDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTDocument.m; sourceTree = "<group>"; };
 		3772D83F1615F62A00EC88F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PTDocument.xib; sourceTree = "<group>"; };
 		3772D8421615F62A00EC88F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		3772D8491615F67800EC88F2 /* PlasmaTrim.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlasmaTrim.entitlements; sourceTree = "<group>"; };
 		3772D84B1615F78F00EC88F2 /* PTSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTSequence.h; sourceTree = "<group>"; };
 		3772D84C1615F78F00EC88F2 /* PTSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTSequence.m; sourceTree = "<group>"; };
 		3772D8511615F82A00EC88F2 /* PTStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStage.h; sourceTree = "<group>"; };
@@ -100,7 +99,6 @@
 		3772D82F1615F62A00EC88F2 /* PlasmaTrim */ = {
 			isa = PBXGroup;
 			children = (
-				3772D8491615F67800EC88F2 /* PlasmaTrim.entitlements */,
 				3772D83B1615F62A00EC88F2 /* PTDocument.h */,
 				3772D83C1615F62A00EC88F2 /* PTDocument.m */,
 				3772D84B1615F78F00EC88F2 /* PTSequence.h */,
@@ -318,8 +316,6 @@
 		3772D8471615F62A00EC88F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = PlasmaTrim/PlasmaTrim.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlasmaTrim/PlasmaTrim-Prefix.pch";
@@ -332,8 +328,6 @@
 		3772D8481615F62A00EC88F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = PlasmaTrim/PlasmaTrim.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlasmaTrim/PlasmaTrim-Prefix.pch";
@@ -362,6 +356,7 @@
 				3772D8481615F62A00EC88F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
