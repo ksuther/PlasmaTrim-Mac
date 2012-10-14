@@ -35,4 +35,7 @@ typedef enum : NSInteger {
 - (void)sequenceView:(PTSequenceView *)sequenceView didSelectColorRange:(NSRange)colorRange inStageAtIndex:(NSUInteger)stageIndex;
 - (void)sequenceView:(PTSequenceView *)sequenceView didSelectHoldTimeInStageAtIndex:(NSUInteger)stageIndex;
 - (void)sequenceView:(PTSequenceView *)sequenceView didSelectFadeTimeInStageAtIndex:(NSUInteger)stageIndex;
+
+//method so the delegate can handle control-clicking to take the color from the stage
+- (void)sequenceView:(PTSequenceView *)sequenceView willTakeColorAtIndex:(NSUInteger)colorIndex inStageAtIndex:(NSUInteger)stageIndex;
 @end

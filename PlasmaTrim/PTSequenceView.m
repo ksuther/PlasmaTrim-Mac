@@ -14,6 +14,8 @@
 @interface PTSequenceView () {
     PTStageView *_stageViews[PTSequenceMaxStageCount];
     
+    BOOL _didControlClick;
+    
     BOOL _dragging;
     NSPoint _mouseDownPoint;
     NSPoint _mouseDraggedPoint;
@@ -69,49 +71,78 @@
 - (void)mouseDown:(NSEvent *)theEvent
 {
     _mouseDownPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    _didControlClick = NO;
+    
+    if (([theEvent modifierFlags] & NSControlKeyMask) != 0) {
+        _didControlClick = YES;
+        
+        //Figure out what stage was clicked on
+        NSPoint point = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+        NSRect checkRect = NSMakeRect(point.x, point.y, 1, 1);
+        
+        for (NSUInteger i = 0; i < PTSequenceMaxStageCount; i++) {
+            PTStageView *stageView = [self stageViewAtIndex:i];
+            NSRect stageRect = [self convertRect:checkRect toView:stageView];
+            NSRange colorRange = [stageView colorRangeForRect:stageRect];
+            
+            if (colorRange.length > 0) {
+                if ([[self delegate] respondsToSelector:@selector(sequenceView:willTakeColorAtIndex:inStageAtIndex:)]) {
+                    [[self delegate] sequenceView:self willTakeColorAtIndex:colorRange.location inStageAtIndex:i];
+                }
+                
+                break;
+            }
+        }
+    }
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
-    _dragging = YES;
-    _mouseDraggedPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-    
-    [self setNeedsDisplay:YES];
+    if (!_didControlClick) {
+        _dragging = YES;
+        _mouseDraggedPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+        
+        [self setNeedsDisplay:YES];
+    }
 }
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-    NSRect checkRect;
-    
-    if (_dragging) {
-        checkRect = [self _draggedRect];
-    } else {
-        NSPoint point = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    if (!_didControlClick) {
+        NSRect checkRect;
         
-        checkRect = NSMakeRect(point.x, point.y, 1, 1);
+        if (_dragging) {
+            checkRect = [self _draggedRect];
+        } else {
+            NSPoint point = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+            
+            checkRect = NSMakeRect(point.x, point.y, 1, 1);
+        }
+        
+        for (NSUInteger i = 0; i < PTSequenceMaxStageCount; i++) {
+            PTStageView *stageView = [self stageViewAtIndex:i];
+            NSRect stageRect = [self convertRect:checkRect toView:stageView];
+            NSRange colorRange = [stageView colorRangeForRect:stageRect];
+            
+            if (colorRange.length > 0) {
+                [[self delegate] sequenceView:self didSelectColorRange:colorRange inStageAtIndex:i];
+            }
+            
+            if (NSIntersectsRect(stageRect, [stageView rectForHoldTime])) {
+                [[self delegate] sequenceView:self didSelectHoldTimeInStageAtIndex:i];
+            }
+            
+            if (NSIntersectsRect(stageRect, [stageView rectForFadeTime])) {
+                [[self delegate] sequenceView:self didSelectFadeTimeInStageAtIndex:i];
+            }
+        }
+        
+        _dragging = NO;
+        
+        [self setNeedsDisplay:YES];
     }
     
-    for (NSUInteger i = 0; i < PTSequenceMaxStageCount; i++) {
-        PTStageView *stageView = [self stageViewAtIndex:i];
-        NSRect stageRect = [self convertRect:checkRect toView:stageView];
-        NSRange colorRange = [stageView colorRangeForRect:stageRect];
-        
-        if (colorRange.length > 0) {
-            [[self delegate] sequenceView:self didSelectColorRange:colorRange inStageAtIndex:i];
-        }
-        
-        if (NSIntersectsRect(stageRect, [stageView rectForHoldTime])) {
-            [[self delegate] sequenceView:self didSelectHoldTimeInStageAtIndex:i];
-        }
-        
-        if (NSIntersectsRect(stageRect, [stageView rectForFadeTime])) {
-            [[self delegate] sequenceView:self didSelectFadeTimeInStageAtIndex:i];
-        }
-    }
-    
-    _dragging = NO;
-    
-    [self setNeedsDisplay:YES];
+    _didControlClick = NO;
 }
 
 - (void)reloadData

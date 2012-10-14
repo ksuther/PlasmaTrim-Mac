@@ -111,11 +111,20 @@
     NSColor *color = [[sender color] pt_nearestValidColor];
     
     [self setCurrentColor:color];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [sender setColor:color];
-        [[NSColorPanel sharedColorPanel] setColor:color];
-    });
+}
+
+#pragma mark -
+
+- (void)setCurrentColor:(NSColor *)currentColor
+{
+    if (_currentColor != currentColor) {
+        _currentColor = currentColor;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[self colorWell] setColor:currentColor];
+            [[NSColorPanel sharedColorPanel] setColor:currentColor];
+        });
+    }
 }
 
 #pragma mark - PTSequenceView Delegate
@@ -151,6 +160,13 @@
     [[[self sequence] stageAtIndex:stageIndex] setFadeTime:[[[[self timePopUpButton] selectedItem] title] characterAtIndex:0]];
     
     [sequenceView reloadData];
+}
+
+- (void)sequenceView:(PTSequenceView *)sequenceView willTakeColorAtIndex:(NSUInteger)colorIndex inStageAtIndex:(NSUInteger)stageIndex
+{
+    PTStage *stage = [[self sequence] stageAtIndex:stageIndex];
+    
+    [self setCurrentColor:[stage colorAtIndex:colorIndex]];
 }
 
 @end
