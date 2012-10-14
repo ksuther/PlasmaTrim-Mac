@@ -8,8 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-static const CGFloat PTStageViewWidth = 20;
-static const CGFloat PTStageViewHeight = 20 * 10;
+static const CGFloat PTStageViewWidth = 16;
+static const CGFloat PTStageViewHeight = 16 * 10;
 
 @class PTStage;
 
