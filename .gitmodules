@@ -1,0 +1,3 @@
+[submodule "Submodules/PlasmaTrim-CLI"]
+	path = Submodules/PlasmaTrim-CLI
+	url = git://github.com/cocide/PlasmaTrim-CLI.git

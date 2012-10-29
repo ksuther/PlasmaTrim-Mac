@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37001ABC163DFE710057CDB2 /* hid.c in Sources */ = {isa = PBXBuildFile; fileRef = 37001ABB163DFE710057CDB2 /* hid.c */; settings = {COMPILER_FLAGS = "-Wno-shorten-64-to-32"; }; };
+		37001AC0163DFE820057CDB2 /* ptrim-lib.cc in Sources */ = {isa = PBXBuildFile; fileRef = 37001ABE163DFE820057CDB2 /* ptrim-lib.cc */; settings = {COMPILER_FLAGS = "-Wno-shorten-64-to-32"; }; };
+		37001AC3163E04150057CDB2 /* PTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37001AC2163E04150057CDB2 /* PTAppDelegate.m */; };
+		37001ACD163E06520057CDB2 /* Devices.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37001ACB163E06520057CDB2 /* Devices.xib */; };
+		37001AD0163E07350057CDB2 /* PTDeviceWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37001ACF163E07350057CDB2 /* PTDeviceWindowController.m */; };
+		372F32351623DA8D007951C9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 372F32341623DA8D007951C9 /* IOKit.framework */; };
+		372F32391623DAAE007951C9 /* PTDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 372F32381623DAAE007951C9 /* PTDeviceManager.m */; };
+		37691F3C162D2BB50092CAF4 /* PTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 37691F3B162D2BB50092CAF4 /* PTDevice.m */; };
 		3772D82A1615F62A00EC88F2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3772D8291615F62A00EC88F2 /* Cocoa.framework */; };
 		3772D8341615F62A00EC88F2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3772D8321615F62A00EC88F2 /* InfoPlist.strings */; };
 		3772D8361615F62A00EC88F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3772D8351615F62A00EC88F2 /* main.m */; };
@@ -22,6 +30,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37001ABB163DFE710057CDB2 /* hid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hid.c; path = "Submodules/PlasmaTrim-CLI/hidapi/mac/hid.c"; sourceTree = SOURCE_ROOT; };
+		37001ABD163DFE790057CDB2 /* hidapi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = hidapi.h; path = "Submodules/PlasmaTrim-CLI/hidapi/hidapi.h"; sourceTree = SOURCE_ROOT; };
+		37001ABE163DFE820057CDB2 /* ptrim-lib.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "ptrim-lib.cc"; path = "Submodules/PlasmaTrim-CLI/src/ptrim-lib.cc"; sourceTree = SOURCE_ROOT; };
+		37001ABF163DFE820057CDB2 /* ptrim-lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ptrim-lib.h"; path = "Submodules/PlasmaTrim-CLI/src/ptrim-lib.h"; sourceTree = SOURCE_ROOT; };
+		37001AC1163E04150057CDB2 /* PTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTAppDelegate.h; sourceTree = "<group>"; };
+		37001AC2163E04150057CDB2 /* PTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTAppDelegate.m; sourceTree = "<group>"; };
+		37001ACC163E06520057CDB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Devices.xib; sourceTree = "<group>"; };
+		37001ACE163E07350057CDB2 /* PTDeviceWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDeviceWindowController.h; sourceTree = "<group>"; };
+		37001ACF163E07350057CDB2 /* PTDeviceWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDeviceWindowController.m; sourceTree = "<group>"; };
+		372F32341623DA8D007951C9 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		372F32371623DAAE007951C9 /* PTDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDeviceManager.h; sourceTree = "<group>"; };
+		372F32381623DAAE007951C9 /* PTDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDeviceManager.m; sourceTree = "<group>"; };
+		37691F3A162D2BB50092CAF4 /* PTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDevice.h; sourceTree = "<group>"; };
+		37691F3B162D2BB50092CAF4 /* PTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDevice.m; sourceTree = "<group>"; };
 		3772D8251615F62A00EC88F2 /* PlasmaTrim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlasmaTrim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3772D8291615F62A00EC88F2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3772D82C1615F62A00EC88F2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -54,12 +76,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				3772D82A1615F62A00EC88F2 /* Cocoa.framework in Frameworks */,
+				372F32351623DA8D007951C9 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37001AB9163DFE690057CDB2 /* Device Support */ = {
+			isa = PBXGroup;
+			children = (
+				37001ABF163DFE820057CDB2 /* ptrim-lib.h */,
+				37001ABE163DFE820057CDB2 /* ptrim-lib.cc */,
+				37001ABD163DFE790057CDB2 /* hidapi.h */,
+				37001ABB163DFE710057CDB2 /* hid.c */,
+			);
+			name = "Device Support";
+			sourceTree = "<group>";
+		};
 		3772D81A1615F62900EC88F2 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				3772D8291615F62A00EC88F2 /* Cocoa.framework */,
+				372F32341623DA8D007951C9 /* IOKit.framework */,
 				3772D82B1615F62A00EC88F2 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -99,6 +134,8 @@
 		3772D82F1615F62A00EC88F2 /* PlasmaTrim */ = {
 			isa = PBXGroup;
 			children = (
+				37001AC1163E04150057CDB2 /* PTAppDelegate.h */,
+				37001AC2163E04150057CDB2 /* PTAppDelegate.m */,
 				3772D83B1615F62A00EC88F2 /* PTDocument.h */,
 				3772D83C1615F62A00EC88F2 /* PTDocument.m */,
 				3772D84B1615F78F00EC88F2 /* PTSequence.h */,
@@ -109,6 +146,13 @@
 				3772D85916161C4B00EC88F2 /* PTSequenceView.m */,
 				3772D85B16161C5400EC88F2 /* PTStageView.h */,
 				3772D85C16161C5400EC88F2 /* PTStageView.m */,
+				37001ACE163E07350057CDB2 /* PTDeviceWindowController.h */,
+				37001ACF163E07350057CDB2 /* PTDeviceWindowController.m */,
+				372F32371623DAAE007951C9 /* PTDeviceManager.h */,
+				372F32381623DAAE007951C9 /* PTDeviceManager.m */,
+				37691F3A162D2BB50092CAF4 /* PTDevice.h */,
+				37691F3B162D2BB50092CAF4 /* PTDevice.m */,
+				37001AB9163DFE690057CDB2 /* Device Support */,
 				3772D85716161C2E00EC88F2 /* Categories */,
 				3772D84A1615F77A00EC88F2 /* Resources */,
 				3772D8301615F62A00EC88F2 /* Supporting Files */,
@@ -131,8 +175,9 @@
 		3772D84A1615F77A00EC88F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3772D83E1615F62A00EC88F2 /* PTDocument.xib */,
 				3772D8411615F62A00EC88F2 /* MainMenu.xib */,
+				3772D83E1615F62A00EC88F2 /* PTDocument.xib */,
+				37001ACB163E06520057CDB2 /* Devices.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -202,6 +247,7 @@
 				3772D83A1615F62A00EC88F2 /* Credits.rtf in Resources */,
 				3772D8401615F62A00EC88F2 /* PTDocument.xib in Resources */,
 				3772D8431615F62A00EC88F2 /* MainMenu.xib in Resources */,
+				37001ACD163E06520057CDB2 /* Devices.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,12 +265,26 @@
 				3772D8561616168300EC88F2 /* NSColor+PTAdditions.m in Sources */,
 				3772D85A16161C4B00EC88F2 /* PTSequenceView.m in Sources */,
 				3772D85D16161C5400EC88F2 /* PTStageView.m in Sources */,
+				372F32391623DAAE007951C9 /* PTDeviceManager.m in Sources */,
+				37691F3C162D2BB50092CAF4 /* PTDevice.m in Sources */,
+				37001ABC163DFE710057CDB2 /* hid.c in Sources */,
+				37001AC0163DFE820057CDB2 /* ptrim-lib.cc in Sources */,
+				37001AC3163E04150057CDB2 /* PTAppDelegate.m in Sources */,
+				37001AD0163E07350057CDB2 /* PTDeviceWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		37001ACB163E06520057CDB2 /* Devices.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37001ACC163E06520057CDB2 /* en */,
+			);
+			name = Devices.xib;
+			sourceTree = "<group>";
+		};
 		3772D8321615F62A00EC88F2 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -11,6 +11,7 @@
 #import "PTStage.h"
 #import "PTSequenceView.h"
 #import "PTStageView.h"
+#import "PTDeviceManager.h"
 #import "NSColor+PTAdditions.h"
 
 @interface PTDocument () <PTSequenceViewDelegate> {
@@ -111,6 +112,11 @@
     NSColor *color = [[sender color] pt_nearestValidColor];
     
     [self setCurrentColor:color];
+}
+
+- (IBAction)uploadSequence:(id)sender
+{
+    
 }
 
 #pragma mark -

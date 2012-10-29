@@ -21,5 +21,6 @@
 
 - (IBAction)changeLastStage:(id)sender;
 - (IBAction)colorChanged:(id)sender;
+- (IBAction)uploadSequence:(id)sender;
 
 @end
