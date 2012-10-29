@@ -9,9 +9,12 @@
 #import "PTDeviceWindowController.h"
 #import "PTDeviceManager.h"
 #import "PTDevice.h"
+#import "PTSequence.h"
+#import "PTDocument.h"
 
 @interface PTDeviceWindowController ()
 @property(nonatomic, weak) IBOutlet NSPopUpButton *devicesPopUpButton;
+@property(nonatomic, weak) IBOutlet NSButton *downloadButton;
 @property(nonatomic, weak) IBOutlet NSSlider *brightnessSlider;
 
 - (void)_reloadUI;
@@ -53,6 +56,17 @@
     [[PTDeviceManager sharedManager] setSelectedDevice:[[sender selectedItem] representedObject]];
 }
 
+- (IBAction)downloadSequence:(id)sender
+{
+    PTSequence *downloadedSequence = [[[PTDeviceManager sharedManager] selectedDevice] downloadSequence];
+    PTDocument *document = [[PTDocument alloc] initWithSequence:downloadedSequence];
+    
+    [[NSDocumentController sharedDocumentController] addDocument:document];
+    
+    [document makeWindowControllers];
+    [document showWindows];
+}
+
 - (IBAction)startSequence:(id)sender
 {
     [[[PTDeviceManager sharedManager] selectedDevice] startSequence];
@@ -71,6 +85,8 @@
     
     [[self devicesPopUpButton] setEnabled:[devices count] > 0];
     [[self devicesPopUpButton] removeAllItems];
+    
+    [[self downloadButton] setEnabled:[devices count] > 0];
     
     if ([devices count] == 0) {
         [[self devicesPopUpButton] addItemWithTitle:NSLocalizedString(@"No PlasmaTrims found", @"No PlasmaTrims found")];

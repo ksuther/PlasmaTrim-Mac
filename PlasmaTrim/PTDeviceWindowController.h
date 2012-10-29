@@ -11,6 +11,7 @@
 @interface PTDeviceWindowController : NSWindowController
 
 - (IBAction)changeActiveDevice:(id)sender;
+- (IBAction)downloadSequence:(id)sender;
 - (IBAction)startSequence:(id)sender;
 - (IBAction)stopSequence:(id)sender;
 

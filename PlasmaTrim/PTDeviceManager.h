@@ -10,7 +10,7 @@
 
 extern NSString * const PTDeviceManagerDidUpdateDevicesNotification;
 
-@class PTDevice;
+@class PTDevice, PTSequence;
 
 @interface PTDeviceManager : NSObject
 

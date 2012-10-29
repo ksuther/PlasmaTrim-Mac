@@ -12,6 +12,7 @@
 #import "PTSequenceView.h"
 #import "PTStageView.h"
 #import "PTDeviceManager.h"
+#import "PTDevice.h"
 #import "NSColor+PTAdditions.h"
 
 @interface PTDocument () <PTSequenceViewDelegate> {
@@ -25,8 +26,13 @@
 
 - (id)init
 {
+    return [self initWithSequence:[[PTSequence alloc] init]];
+}
+
+- (id)initWithSequence:(PTSequence *)sequence
+{
     if ( (self = [super init]) ) {
-        [self setSequence:[[PTSequence alloc] init]];
+        [self setSequence:sequence];
         
         [self setCurrentColor:[NSColor whiteColor]];
     }
@@ -116,7 +122,7 @@
 
 - (IBAction)uploadSequence:(id)sender
 {
-    
+    [[[PTDeviceManager sharedManager] selectedDevice] uploadSequence:[self sequence]];
 }
 
 #pragma mark -

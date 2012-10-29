@@ -19,6 +19,8 @@
 
 @property(nonatomic, strong, readonly) PTSequence *sequence;
 
+- (id)initWithSequence:(PTSequence *)sequence;
+
 - (IBAction)changeLastStage:(id)sender;
 - (IBAction)colorChanged:(id)sender;
 - (IBAction)uploadSequence:(id)sender;
