@@ -27,7 +27,22 @@
 		3772D8561616168300EC88F2 /* NSColor+PTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3772D8551616168300EC88F2 /* NSColor+PTAdditions.m */; };
 		3772D85A16161C4B00EC88F2 /* PTSequenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3772D85916161C4B00EC88F2 /* PTSequenceView.m */; };
 		3772D85D16161C5400EC88F2 /* PTStageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3772D85C16161C5400EC88F2 /* PTStageView.m */; };
+		37E9DDC31648C271008624B0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E9DDC21648C271008624B0 /* SenTestingKit.framework */; };
+		37E9DDC41648C271008624B0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3772D8291615F62A00EC88F2 /* Cocoa.framework */; };
+		37E9DDCA1648C271008624B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37E9DDC81648C271008624B0 /* InfoPlist.strings */; };
+		37E9DDCD1648C271008624B0 /* PlasmaTrimTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9DDCC1648C271008624B0 /* PlasmaTrimTests.m */; };
+		37E9DDD91648C3C9008624B0 /* NSColor+PTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3772D8551616168300EC88F2 /* NSColor+PTAdditions.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37E9DDD31648C2E4008624B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3772D81C1615F62900EC88F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37E9DDC01648C271008624B0;
+			remoteInfo = PlasmaTrimTests;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		37001ABB163DFE710057CDB2 /* hid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hid.c; path = "Submodules/PlasmaTrim-CLI/hidapi/mac/hid.c"; sourceTree = SOURCE_ROOT; };
@@ -68,6 +83,13 @@
 		3772D85916161C4B00EC88F2 /* PTSequenceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTSequenceView.m; sourceTree = "<group>"; };
 		3772D85B16161C5400EC88F2 /* PTStageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTStageView.h; sourceTree = "<group>"; };
 		3772D85C16161C5400EC88F2 /* PTStageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTStageView.m; sourceTree = "<group>"; };
+		37E9DDC11648C271008624B0 /* PlasmaTrimTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlasmaTrimTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		37E9DDC21648C271008624B0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		37E9DDC71648C271008624B0 /* PlasmaTrimTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlasmaTrimTests-Info.plist"; sourceTree = "<group>"; };
+		37E9DDC91648C271008624B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		37E9DDCB1648C271008624B0 /* PlasmaTrimTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlasmaTrimTests.h; sourceTree = "<group>"; };
+		37E9DDCC1648C271008624B0 /* PlasmaTrimTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlasmaTrimTests.m; sourceTree = "<group>"; };
+		37E9DDCE1648C271008624B0 /* PlasmaTrimTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlasmaTrimTests-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +99,15 @@
 			files = (
 				3772D82A1615F62A00EC88F2 /* Cocoa.framework in Frameworks */,
 				372F32351623DA8D007951C9 /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37E9DDBD1648C271008624B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37E9DDC31648C271008624B0 /* SenTestingKit.framework in Frameworks */,
+				37E9DDC41648C271008624B0 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				3772D82F1615F62A00EC88F2 /* PlasmaTrim */,
+				37E9DDC51648C271008624B0 /* PlasmaTrimTests */,
 				3772D8281615F62A00EC88F2 /* Frameworks */,
 				3772D8261615F62A00EC88F2 /* Products */,
 			);
@@ -107,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				3772D8251615F62A00EC88F2 /* PlasmaTrim.app */,
+				37E9DDC11648C271008624B0 /* PlasmaTrimTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +149,7 @@
 			children = (
 				3772D8291615F62A00EC88F2 /* Cocoa.framework */,
 				372F32341623DA8D007951C9 /* IOKit.framework */,
+				37E9DDC21648C271008624B0 /* SenTestingKit.framework */,
 				3772D82B1615F62A00EC88F2 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -191,6 +225,26 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		37E9DDC51648C271008624B0 /* PlasmaTrimTests */ = {
+			isa = PBXGroup;
+			children = (
+				37E9DDCB1648C271008624B0 /* PlasmaTrimTests.h */,
+				37E9DDCC1648C271008624B0 /* PlasmaTrimTests.m */,
+				37E9DDC61648C271008624B0 /* Supporting Files */,
+			);
+			path = PlasmaTrimTests;
+			sourceTree = "<group>";
+		};
+		37E9DDC61648C271008624B0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				37E9DDC71648C271008624B0 /* PlasmaTrimTests-Info.plist */,
+				37E9DDC81648C271008624B0 /* InfoPlist.strings */,
+				37E9DDCE1648C271008624B0 /* PlasmaTrimTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -205,11 +259,30 @@
 			buildRules = (
 			);
 			dependencies = (
+				37E9DDD41648C2E4008624B0 /* PBXTargetDependency */,
 			);
 			name = PlasmaTrim;
 			productName = PlasmaTrim;
 			productReference = 3772D8251615F62A00EC88F2 /* PlasmaTrim.app */;
 			productType = "com.apple.product-type.application";
+		};
+		37E9DDC01648C271008624B0 /* PlasmaTrimTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37E9DDD11648C271008624B0 /* Build configuration list for PBXNativeTarget "PlasmaTrimTests" */;
+			buildPhases = (
+				37E9DDBC1648C271008624B0 /* Sources */,
+				37E9DDBD1648C271008624B0 /* Frameworks */,
+				37E9DDBE1648C271008624B0 /* Resources */,
+				37E9DDBF1648C271008624B0 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlasmaTrimTests;
+			productName = PlasmaTrimTests;
+			productReference = 37E9DDC11648C271008624B0 /* PlasmaTrimTests.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -234,6 +307,7 @@
 			projectRoot = "";
 			targets = (
 				3772D8241615F62A00EC88F2 /* PlasmaTrim */,
+				37E9DDC01648C271008624B0 /* PlasmaTrimTests */,
 			);
 		};
 /* End PBXProject section */
@@ -251,7 +325,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37E9DDBE1648C271008624B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37E9DDCA1648C271008624B0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		37E9DDBF1648C271008624B0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3772D8211615F62A00EC88F2 /* Sources */ = {
@@ -274,7 +372,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37E9DDBC1648C271008624B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37E9DDCD1648C271008624B0 /* PlasmaTrimTests.m in Sources */,
+				37E9DDD91648C3C9008624B0 /* NSColor+PTAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37E9DDD41648C2E4008624B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37E9DDC01648C271008624B0 /* PlasmaTrimTests */;
+			targetProxy = 37E9DDD31648C2E4008624B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		37001ACB163E06520057CDB2 /* Devices.xib */ = {
@@ -315,6 +430,14 @@
 				3772D8421615F62A00EC88F2 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		37E9DDC81648C271008624B0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37E9DDC91648C271008624B0 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -397,6 +520,36 @@
 			};
 			name = Release;
 		};
+		37E9DDCF1648C271008624B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlasmaTrimTests/PlasmaTrimTests-Prefix.pch";
+				INFOPLIST_FILE = "PlasmaTrimTests/PlasmaTrimTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		37E9DDD01648C271008624B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlasmaTrimTests/PlasmaTrimTests-Prefix.pch";
+				INFOPLIST_FILE = "PlasmaTrimTests/PlasmaTrimTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -414,6 +567,15 @@
 			buildConfigurations = (
 				3772D8471615F62A00EC88F2 /* Debug */,
 				3772D8481615F62A00EC88F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37E9DDD11648C271008624B0 /* Build configuration list for PBXNativeTarget "PlasmaTrimTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37E9DDCF1648C271008624B0 /* Debug */,
+				37E9DDD01648C271008624B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
