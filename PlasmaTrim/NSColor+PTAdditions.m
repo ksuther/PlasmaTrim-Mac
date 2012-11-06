@@ -34,11 +34,9 @@
 
 - (NSString *)pt_hexString
 {
-    NSColor *color = [self colorUsingColorSpace:[NSColorSpace sRGBColorSpace]];
-    
-    unsigned int red = (unsigned int)round([color redComponent] * 15);
-    unsigned int green = (unsigned int)round([color greenComponent] * 15);
-    unsigned int blue = (unsigned int)round([color blueComponent] * 15);
+    unsigned int red = (unsigned int)round([self redComponent] * 15);
+    unsigned int green = (unsigned int)round([self greenComponent] * 15);
+    unsigned int blue = (unsigned int)round([self blueComponent] * 15);
     
     return [[NSString stringWithFormat:@"%01x%01x%01x", red, green, blue] uppercaseString];
 }
